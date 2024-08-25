@@ -14,8 +14,18 @@ function responseFunction(result){
         setInner("content","Selamat datang "+result.data.name);
         redirect("/pdboard");
     }else{
-        setInner("content","Silahkan lakukan chat ke bot helpdesk pemilihan operator");
-        redirect("https://wa.me/pamongdesa?text=bantuan+operator");
+        getJSON("https://asia-southeast2-awangga.cloudfunctions.net/pamongdesa/data/lms/user","login",getCookie("login"),apiResponse)
     }
     console.log(result);
+}
+
+function apiResponse(result){
+    if (result.status===200){
+        setInner("content","Selamat datang "+result.data.data.fullname);
+        redirect("/testi");
+    }else{
+        setInner("content","Silahkan lakukan pendaftaran dahulu ke LMS Pamong Desa");
+       //redirect("https://wa.me/pamongdesa?text=bantuan+operator");
+    }
+    
 }
