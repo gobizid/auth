@@ -12,7 +12,7 @@ getJSON("https://asia-southeast2-awangga.cloudfunctions.net/jualin/data/user","l
 function responseFunction(result){
     if (result.status === 200){
         setInner("content","Selamat datang "+result.data.name);
-        redirect("/jboard");
+        redirect("/gboard");
     }else{
         getJSON("https://asia-southeast2-awangga.cloudfunctions.net/jualin/data/konsumen/user","login",getCookie("login"),apiResponse)
     }
